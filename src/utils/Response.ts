@@ -1,22 +1,26 @@
 import { Context } from 'hono'
 import { HttpStatus } from '@/utils/HttpStatus'
-import { JSONParsed } from 'hono/dist/types/utils/types'
+import type { SuccessType, FailedType } from '@/types/response'
 
 export class Response
 {
-  static resolveForSuccess(c: Context, message: string, data: null | object = null, status: HttpStatus = HttpStatus.OK): JSONParsed<any> {
-    return c.json({
+  static resolveForSuccess(c: Context, message: string, data: null | object = null, status: HttpStatus = HttpStatus.OK) {
+    const response: SuccessType = {
       status: 'success',
       message: message,
       data: data,
-    }, status)
+    }
+
+    return c.json(response, status)
   }
 
-  static resolveForFailed(c: Context, message: string, errors: null | object = null, status: HttpStatus = HttpStatus.NotFound): JSONParsed<any> {
-    return c.json({
+  static resolveForFailed(c: Context, message: string, errors: null | object = null, status: HttpStatus = HttpStatus.NotFound) {
+    const response: FailedType = {
       status: 'error',
       message: message,
       errors: errors,
-    }, status)
+    }
+
+    return c.json(response, status)
   }
 }
