@@ -1,5 +1,5 @@
 import { Context } from 'hono'
-import { HttpStatus } from '@utils/HttpStatus'
+import { HttpStatus } from '@/utils/HttpStatus'
 import { JSONParsed } from 'hono/dist/types/utils/types'
 
 export class Response

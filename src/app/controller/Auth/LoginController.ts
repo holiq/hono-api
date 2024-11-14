@@ -1,5 +1,5 @@
 import { Context } from 'hono'
-import { Response } from '@utils/Response'
+import { Response } from '@/utils/Response'
 
 export class LoginController
 {

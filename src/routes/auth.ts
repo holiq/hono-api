@@ -1,6 +1,6 @@
 import { Context, Hono } from "hono";
-import { LoginController } from "@app/controller/Auth/LoginController";
-import { RegisterController } from "@app/controller/Auth/RegisterController";
+import { LoginController } from "@/app/controller/Auth/LoginController";
+import { RegisterController } from "@/app/controller/Auth/RegisterController";
 
 const authRoutes: Hono = new Hono();
 
