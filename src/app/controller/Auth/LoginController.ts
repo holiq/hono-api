@@ -25,7 +25,7 @@ export class LoginController
         name: user.name,
         email: user.email,
       },
-      token: encrypt(email),
+      token: await encrypt(email),
     }
 
     return Response.resolveForSuccess(c, 'Login Success', data)

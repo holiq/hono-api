@@ -22,7 +22,7 @@ export class RegisterController
 
     await db.insert(users).values({name, email, password: hashedPassword})
 
-    const token = encrypt(email)
+    const token = await encrypt(email)
 
     return Response.resolveForSuccess(c, 'Register Success', {user: {name, email}, token})
   }

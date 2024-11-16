@@ -9,5 +9,5 @@ interface JwtPayload extends jose.JWTPayload
 export const encrypt = async (payload: JwtPayload) => {
   const SecretKey = new TextEncoder().encode(ENV.JWT_SECRET)
 
-  return await new jose.SignJWT({payload}).sign(SecretKey)
+  return await new jose.SignJWT({payload}).setProtectedHeader({alg: 'HS256'}).sign(SecretKey)
 }
