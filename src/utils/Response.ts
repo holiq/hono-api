@@ -1,6 +1,6 @@
-import { Context } from 'hono'
+import type { FailedType, SuccessType } from '@/types/response'
 import { HttpStatus } from '@/utils/HttpStatus'
-import type { SuccessType, FailedType } from '@/types/response'
+import { Context } from 'hono'
 
 export class Response
 {
@@ -14,7 +14,7 @@ export class Response
     return c.json(response, status)
   }
 
-  static resolveForFailed(c: Context, message: string, errors: null | object = null, status: HttpStatus = HttpStatus.NotFound) {
+  static resolveForFailed(c: Context, message: string = '', errors: null | object = null, status: HttpStatus = HttpStatus.NotFound) {
     const response: FailedType = {
       status: 'error',
       message: message,
