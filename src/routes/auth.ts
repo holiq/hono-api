@@ -1,8 +1,8 @@
-import { LoginController } from '@/app/controller/Auth/LoginController'
-import { RegisterController } from '@/app/controller/Auth/RegisterController'
-import { LoginValidator } from '@/app/validation/Auth/LoginValidator'
-import { RegisterValidator } from '@/app/validation/Auth/RegisterValidator'
-import { Validate } from '@/utils/Validate'
+import { LoginController } from '@/app/controller/auth/login.controller'
+import { RegisterController } from '@/app/controller/auth/register.controller'
+import { LoginValidator } from '@/app/validation/auth/login.validator'
+import { RegisterValidator } from '@/app/validation/auth/register.validator'
+import { Validate } from '@/utils/validate'
 import { Hono } from 'hono'
 
 const authRoutes: Hono = new Hono()

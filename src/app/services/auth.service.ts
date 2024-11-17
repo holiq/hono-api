@@ -1,7 +1,7 @@
 import { AuthResponse } from '@/app/interface/auth'
 import { User } from '@/app/interface/user'
-import { UserService } from '@/app/services/UserService'
-import { encrypt } from '@/utils/JwtHandler'
+import { UserService } from '@/app/services/user.service'
+import { encrypt } from '@/utils/jwt-handler'
 import bcrypt from 'bcryptjs'
 
 export class AuthService

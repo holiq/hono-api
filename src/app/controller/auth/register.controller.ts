@@ -1,5 +1,5 @@
-import { AuthService } from '@/app/services/AuthService'
-import { Response } from '@/utils/Response'
+import { AuthService } from '@/app/services/auth.service'
+import { Response } from '@/utils/response'
 import { Context } from 'hono'
 
 

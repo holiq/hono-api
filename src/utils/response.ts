@@ -1,5 +1,5 @@
 import type { FailedType, SuccessType } from '@/types/response'
-import { HttpStatus } from '@/utils/HttpStatus'
+import { HttpStatus } from '@/utils/http-status'
 import { Context } from 'hono'
 
 export class Response

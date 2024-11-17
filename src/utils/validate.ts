@@ -1,8 +1,8 @@
+import { HttpStatus } from '@/utils/http-status'
+import { Response } from '@/utils/response'
 import { Context } from 'hono'
-import { z } from 'zod'
-import { Response } from '@/utils/Response'
-import { HttpStatus } from '@/utils/HttpStatus'
 import { validator } from 'hono/validator'
+import { z } from 'zod'
 
 export const Validate = (schema: z.Schema) => validator('json', async (value, c: Context) => {
   const validate = schema.safeParse(await c.req.json())
