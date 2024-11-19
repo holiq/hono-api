@@ -1,5 +1,4 @@
-import { HttpStatus } from '@/utils/http-status'
-import { Response } from '@/utils/response'
+import { ValidationException } from '@/app/exceptions/validation.exception'
 import { Context } from 'hono'
 import { validator } from 'hono/validator'
 import { z } from 'zod'
@@ -11,7 +10,7 @@ export class Request
       const validate = schema.safeParse(await c.req.json())
 
       if (!validate.success) {
-        return Response.resolveForFailed(c, validate.error.name, validate.error.format(), HttpStatus.UnprocessableEntity)
+        throw new ValidationException('Request invalid', validate.error.format())
       }
 
       return validate.data

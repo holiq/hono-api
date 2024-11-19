@@ -18,5 +18,4 @@ export enum HttpStatus
   BadGateway = 502,
   ServiceUnavailable = 503,
   GatewayTimeout = 504,
-
 }

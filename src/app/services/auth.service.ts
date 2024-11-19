@@ -1,3 +1,5 @@
+import { EmailAlreadyExistsException } from '@/app/exceptions/email-already-exists.exception'
+import { UnauthenticatedException } from '@/app/exceptions/unauthenticated.exception'
 import { IAuth } from '@/app/interfaces/auth.interface'
 import { IUser } from '@/app/interfaces/user.interface'
 import { UserService } from '@/app/services/user.service'
@@ -9,7 +11,7 @@ export class AuthService
     const user: IUser | null = await UserService.findByEmail(email)
 
     if (!user || !await Bun.password.verify(password, user.password)) {
-      return null
+      throw new UnauthenticatedException('Invalid credentials')
     }
 
     const {password: _, ... sanitizedUser} = user
@@ -24,7 +26,7 @@ export class AuthService
     const existingUser: IUser | null = await UserService.findByEmail(email)
 
     if (existingUser) {
-      return null
+      throw new EmailAlreadyExistsException('Email already exists')
     }
 
     const newUser: IUser = await UserService.createUser(name, email, password)
