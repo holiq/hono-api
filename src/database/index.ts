@@ -1,8 +1,8 @@
-import { drizzle } from 'drizzle-orm/mysql2'
-import mysql from 'mysql2/promise'
 import { ENV } from '@/config/env'
+import { drizzle } from 'drizzle-orm/node-postgres'
+import { Pool } from 'pg'
 
-const connection: mysql.Connection = await mysql.createConnection({
+const pool = new Pool({
   host: ENV.DB.HOST,
   port: ENV.DB.PORT,
   user: ENV.DB.USER,
@@ -10,4 +10,4 @@ const connection: mysql.Connection = await mysql.createConnection({
   database: ENV.DB.DATABASE,
 })
 
-export const db = drizzle(connection)
+export const db = drizzle({client: pool})

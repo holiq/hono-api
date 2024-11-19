@@ -1,4 +1,4 @@
-import { JwtPayload } from '@/app/interface/auth'
+import { JwtPayload } from '@/app/interfaces/auth'
 import { ENV } from '@/config/env'
 import * as jose from 'jose'
 
