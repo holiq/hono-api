@@ -1,15 +1,14 @@
-import { AuthResponse } from '@/app/interfaces/auth'
+import { IAuth } from '@/app/interfaces/auth.interface'
 import { IUser } from '@/app/interfaces/user.interface'
 import { UserService } from '@/app/services/user.service'
-import { encrypt } from '@/utils/jwt-handler'
-import bcrypt from 'bcryptjs'
+import { JwtHandler } from '@/utils/jwt-handler'
 
 export class AuthService
 {
-  static async login(email: string, password: string): Promise<AuthResponse | null> {
+  static async login(email: string, password: string): Promise<IAuth | null> {
     const user: IUser | null = await UserService.findByEmail(email)
 
-    if (!user || !bcrypt.compareSync(password, user.password)) {
+    if (!user || !await Bun.password.verify(password, user.password)) {
       return null
     }
 
@@ -17,11 +16,11 @@ export class AuthService
 
     return {
       user: sanitizedUser,
-      token: await encrypt(user),
+      token: await JwtHandler.encrypt(user),
     }
   }
 
-  static async register(name: string, email: string, password: string): Promise<AuthResponse | null> {
+  static async register(name: string, email: string, password: string): Promise<IAuth | null> {
     const existingUser: IUser | null = await UserService.findByEmail(email)
 
     if (existingUser) {
@@ -34,7 +33,7 @@ export class AuthService
 
     return {
       user: data,
-      token: await encrypt(data),
+      token: await JwtHandler.encrypt(newUser),
     }
   }
 }

@@ -1,9 +1,16 @@
-import { JwtPayload } from '@/app/interfaces/auth'
+import { IUser } from '@/app/interfaces/user.interface'
 import { ENV } from '@/config/env'
-import * as jose from 'jose'
+import { sign } from 'hono/jwt'
 
-export const encrypt = async (payload: JwtPayload) => {
-  const SecretKey = new TextEncoder().encode(ENV.JWT_SECRET)
+export class JwtHandler
+{
+  static async encrypt(user: IUser): Promise<string> {
+    const payload = {
+      id: user.id,
+      email: user.email,
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 60,
+    }
 
-  return await new jose.SignJWT({payload}).setProtectedHeader({alg: 'HS256'}).sign(SecretKey)
+    return await sign(payload, ENV.JWT_SECRET)
+  }
 }

@@ -1,4 +1,4 @@
-import { AuthResponse } from '@/app/interfaces/auth'
+import { IAuth } from '@/app/interfaces/auth.interface'
 import { AuthService } from '@/app/services/auth.service'
 import { HttpStatus } from '@/utils/http-status'
 import { Response } from '@/utils/response'
@@ -9,7 +9,7 @@ export class LoginController
   static async handle(c: Context) {
     const {email, password} = await c.req.json()
 
-    const data: AuthResponse | null = await AuthService.login(email, password)
+    const data: IAuth | null = await AuthService.login(email, password)
 
     if (!data) {
       return Response.resolveForFailed(c, 'Invalid credentials', null, HttpStatus.Unauthorized)

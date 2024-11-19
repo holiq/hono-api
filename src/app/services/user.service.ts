@@ -1,7 +1,6 @@
 import { IUser } from '@/app/interfaces/user.interface'
 import { db } from '@/database'
 import { users } from '@/database/schema/user'
-import bcrypt from 'bcryptjs'
 import { eq } from 'drizzle-orm'
 
 export class UserService
@@ -13,7 +12,7 @@ export class UserService
   }
 
   static async createUser(name: string, email: string, password: string): Promise<IUser> {
-    const passwordHash: string = await bcrypt.hash(password, 10)
+    const passwordHash: string = await Bun.password.hash(password)
 
     const [user] = await db.insert(users).values({name, email, password: passwordHash}).returning()
 
