@@ -3,8 +3,7 @@ import { Context } from 'hono'
 import { validator } from 'hono/validator'
 import { z } from 'zod'
 
-export class Request
-{
+export class Request {
   static validate(schema: z.Schema) {
     return validator('json', async (value, c: Context) => {
       const validate = schema.safeParse(await c.req.json())

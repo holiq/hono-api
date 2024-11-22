@@ -1,7 +1,9 @@
 {
   "name": "hono-api",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "format": "prettier --check \"src/**/*.ts\"",
+    "format:fix": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
     "@hono/zod-validator": "^0.4.1",
@@ -15,6 +17,7 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/bun": "latest",
     "@types/pg": "^8.11.10",
-    "drizzle-kit": "^0.28.1"
+    "drizzle-kit": "^0.28.1",
+    "prettier": "^3.3.3"
   }
 }

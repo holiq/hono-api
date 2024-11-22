@@ -5,16 +5,15 @@ import { IUser } from '@/app/interfaces/user.interface'
 import { UserService } from '@/app/services/user.service'
 import { JwtHandler } from '@/utils/jwt-handler'
 
-export class AuthService
-{
+export class AuthService {
   static async login(email: string, password: string): Promise<IAuth | null> {
     const user: IUser | null = await UserService.findByEmail(email)
 
-    if (!user || !await Bun.password.verify(password, user.password)) {
+    if (!user || !(await Bun.password.verify(password, user.password))) {
       throw new UnauthenticatedException('Invalid credentials')
     }
 
-    const {password: _, ... sanitizedUser} = user
+    const { password: _, ...sanitizedUser } = user
 
     return {
       user: sanitizedUser,
@@ -31,7 +30,7 @@ export class AuthService
 
     const newUser: IUser = await UserService.createUser(name, email, password)
 
-    const {password: _, ... data} = newUser
+    const { password: _, ...data } = newUser
 
     return {
       user: data,

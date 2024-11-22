@@ -4,9 +4,13 @@ import { Context } from 'hono'
 import { StatusCode } from 'hono/utils/http-status'
 import { JSONParsed } from 'hono/utils/types'
 
-export class Response
-{
-  static resolveForSuccess(ctx: Context, message: string, data: null | object = null, statusCode: StatusCode = HttpStatus.OK): JSONParsed<any> {
+export class Response {
+  static resolveForSuccess(
+    ctx: Context,
+    message: string,
+    data: null | object = null,
+    statusCode: StatusCode = HttpStatus.OK
+  ): JSONParsed<any> {
     const response: ResponseType = {
       status: 'success',
       message: message,
@@ -16,7 +20,12 @@ export class Response
     return ctx.json(response, statusCode)
   }
 
-  static resolveForFailed(ctx: Context, message: string = '', errors: null | object = null, statusCode: StatusCode = HttpStatus.NotFound): JSONParsed<any> {
+  static resolveForFailed(
+    ctx: Context,
+    message: string = '',
+    errors: null | object = null,
+    statusCode: StatusCode = HttpStatus.NotFound
+  ): JSONParsed<any> {
     const response: ResponseType = {
       status: 'error',
       message: message,

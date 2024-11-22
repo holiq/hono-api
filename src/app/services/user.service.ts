@@ -4,8 +4,7 @@ import { db } from '@/database'
 import { users } from '@/database/schema/user'
 import { eq } from 'drizzle-orm'
 
-export class UserService
-{
+export class UserService {
   static async findByEmail(email: string): Promise<IUser | null> {
     try {
       const result: IUser[] = await db.select().from(users).where(eq(users.email, email)).limit(1)
@@ -20,7 +19,10 @@ export class UserService
     try {
       const passwordHash: string = await Bun.password.hash(password)
 
-      const [user] = await db.insert(users).values({name, email, password: passwordHash}).returning()
+      const [user] = await db
+        .insert(users)
+        .values({ name, email, password: passwordHash })
+        .returning()
 
       return user
     } catch (e) {
