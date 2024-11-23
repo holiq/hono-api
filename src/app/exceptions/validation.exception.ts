@@ -1,6 +1,6 @@
-import { HttpStatus } from '@/utils/http-status'
 import { HTTPException } from 'hono/http-exception'
-import { StatusCode } from 'hono/utils/http-status'
+import type { StatusCode } from 'hono/utils/http-status'
+import { HttpStatus } from '@/utils/http-status'
 
 export class ValidationException extends HTTPException {
   constructor(

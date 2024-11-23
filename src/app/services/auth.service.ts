@@ -1,7 +1,7 @@
 import { EmailAlreadyExistsException } from '@/app/exceptions/email-already-exists.exception'
 import { UnauthenticatedException } from '@/app/exceptions/unauthenticated.exception'
-import { IAuth } from '@/app/interfaces/auth.interface'
-import { IUser } from '@/app/interfaces/user.interface'
+import type { IAuth } from '@/app/interfaces/auth.interface'
+import type { IUser } from '@/app/interfaces/user.interface'
 import { UserService } from '@/app/services/user.service'
 import { JwtHandler } from '@/utils/jwt-handler'
 

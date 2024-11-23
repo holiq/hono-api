@@ -1,6 +1,6 @@
-import { IUser } from '@/app/interfaces/user.interface'
-import { ENV } from '@/config/env'
 import { sign } from 'hono/jwt'
+import type { IUser } from '@/app/interfaces/user.interface'
+import { ENV } from '@/config/env'
 
 export class JwtHandler {
   static async encrypt(user: IUser): Promise<string> {

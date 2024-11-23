@@ -1,8 +1,8 @@
+import { eq } from 'drizzle-orm'
 import { InternalServerErrorException } from '@/app/exceptions/internal-server-error.exception'
-import { IUser } from '@/app/interfaces/user.interface'
+import type { IUser } from '@/app/interfaces/user.interface'
 import { db } from '@/database'
 import { users } from '@/database/schema/user'
-import { eq } from 'drizzle-orm'
 
 export class UserService {
   static async findByEmail(email: string): Promise<IUser | null> {

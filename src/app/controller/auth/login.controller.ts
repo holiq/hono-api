@@ -1,7 +1,7 @@
-import { IAuth } from '@/app/interfaces/auth.interface'
+import type { Context } from 'hono'
+import type { IAuth } from '@/app/interfaces/auth.interface'
 import { AuthService } from '@/app/services/auth.service'
 import { Response } from '@/utils/response'
-import { Context } from 'hono'
 
 export class LoginController {
   static async handle(c: Context) {

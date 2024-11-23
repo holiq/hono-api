@@ -1,8 +1,8 @@
 import type { ResponseType } from '@/types/response'
 import { HttpStatus } from '@/utils/http-status'
-import { Context } from 'hono'
-import { StatusCode } from 'hono/utils/http-status'
-import { JSONParsed } from 'hono/utils/types'
+import type { Context } from 'hono'
+import type { StatusCode } from 'hono/utils/http-status'
+import type { JSONParsed } from 'hono/utils/types'
 
 export class Response {
   static resolveForSuccess(

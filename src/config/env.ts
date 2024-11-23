@@ -1,5 +1,5 @@
-import { EnvType } from '@/types/env'
 import { config } from 'dotenv'
+import type { EnvType } from '@/types/env'
 
 config()
 

@@ -1,9 +1,9 @@
-import { HttpStatus } from '@/utils/http-status'
 import { HTTPException } from 'hono/http-exception'
-import { StatusCode } from 'hono/utils/http-status'
+import type { StatusCode } from 'hono/utils/http-status'
+import { HttpStatus } from '@/utils/http-status'
 
 export class InternalServerErrorException extends HTTPException {
-  constructor(errors: any = null, status: StatusCode = HttpStatus.InternalServerError) {
+  constructor(errors: object | null = null, status: StatusCode = HttpStatus.InternalServerError) {
     super(status, { message: 'Internal Server Error', cause: errors })
 
     this.name = 'InternalServerErrorException'

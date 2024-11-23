@@ -1,11 +1,11 @@
-import { ValidationException } from '@/app/exceptions/validation.exception'
-import { Context } from 'hono'
+import type { Context } from 'hono'
 import { validator } from 'hono/validator'
-import { z } from 'zod'
+import type { z } from 'zod'
+import { ValidationException } from '@/app/exceptions/validation.exception'
 
 export class Request {
   static validate(schema: z.Schema) {
-    return validator('json', async (value, c: Context) => {
+    return validator('json', async (val: undefined, c: Context) => {
       const validate = schema.safeParse(await c.req.json())
 
       if (!validate.success) {
